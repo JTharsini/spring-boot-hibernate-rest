@@ -12,6 +12,8 @@ public class DefaultCustomerService implements CustomerService
 {
   @Autowired
   private CustomerRepository customerRepository;
+  @Autowired
+  private CustomerMapper customerMapper;
 
   /**
    * Create a customer based on the data sent to the service class.
@@ -21,8 +23,8 @@ public class DefaultCustomerService implements CustomerService
   @Override
   public CustomerData saveCustomer(CustomerData customer)
   {
-    Customer customerModel = populateCustomerEntity(customer);
-    return populateCustomerData(customerRepository.save(customerModel));
+    Customer customerModel = customerMapper.toEntity(customer);
+    return customerMapper.toDataObject(customerRepository.save(customerModel));
   }
 
   /**
@@ -49,7 +51,7 @@ public class DefaultCustomerService implements CustomerService
     List<CustomerData> customers = new ArrayList<>();
     List<Customer> customerList = customerRepository.findAll();
     customerList.forEach(customer -> {
-      customers.add(populateCustomerData(customer));
+      customers.add(customerMapper.toDataObject(customer));
     });
     return customers;
   }
@@ -62,37 +64,7 @@ public class DefaultCustomerService implements CustomerService
   @Override
   public CustomerData getCustomerById(Long customerId)
   {
-    return populateCustomerData(customerRepository.findById(customerId)
-                                  .orElseThrow(() -> new EntityNotFoundException("Customer not found")));
-  }
-
-  /**
-   * convert Customer JPA entity to the DTO object
-   * for frontend data
-   * @param customer
-   * @return CustomerData
-   */
-  private CustomerData populateCustomerData(final Customer customer)
-  {
-    CustomerData customerData = new CustomerData();
-    customerData.setId(customer.getId());
-    customerData.setFirstName(customer.getFirstName());
-    customerData.setLastName(customer.getLastName());
-    customerData.setEmail(customer.getEmail());
-    return customerData;
-  }
-
-  /**
-   * map the front end customer object to the JPA customer entity.
-   * @param customerData
-   * @return Customer
-   */
-  private Customer populateCustomerEntity(CustomerData customerData)
-  {
-    Customer customer = new Customer();
-    customer.setFirstName(customerData.getFirstName());
-    customer.setLastName(customerData.getLastName());
-    customer.setEmail(customerData.getEmail());
-    return customer;
+    return customerMapper.toDataObject(customerRepository.findById(customerId)
+                                         .orElseThrow(() -> new EntityNotFoundException("Customer not found")));
   }
 }
