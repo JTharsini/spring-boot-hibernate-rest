@@ -56,3 +56,5 @@ otherwise error:
         product_id bigint,
         primary key (id)
     )" via JDBC Statement
+-Requirement: Need to save customer and product along with the order : Cascade
+Need to save customer and product first and order from the already created customer and product : no Cascade

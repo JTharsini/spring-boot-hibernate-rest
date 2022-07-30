@@ -10,7 +10,7 @@ public class ProductMapper implements Mapper<ProductData, Product>
   public Product toEntity(ProductData productData)
   {
     Product product = new Product();
-    product.setId(productData.getId());
+    product.setProductId(productData.getId());
     product.setName(productData.getName());
     product.setPrice(productData.getPrice());
     return product;
@@ -20,7 +20,7 @@ public class ProductMapper implements Mapper<ProductData, Product>
   public ProductData toDataObject(Product product)
   {
     ProductData productData = new ProductData();
-    productData.setId(product.getId());
+    productData.setId(product.getProductId());
     productData.setName(product.getName());
     productData.setPrice(product.getPrice());
     return productData;

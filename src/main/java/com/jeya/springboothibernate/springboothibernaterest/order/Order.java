@@ -24,10 +24,10 @@ public class Order
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @OneToOne
-  @JoinColumn(name = "id")
+  @JoinColumn(name = "customerId")
   private Customer customer;
   @ManyToMany
-  @JoinColumn(name = "id")
+  @JoinColumn(name = "productId")
   private List<Product> products;
 
   public Order()

@@ -1,5 +1,6 @@
 package com.jeya.springboothibernate.springboothibernaterest.customer;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ public class Customer
 {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "customerId")
   private Long id;
   private String firstName;
   private String lastName;
