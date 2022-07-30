@@ -58,3 +58,5 @@ otherwise error:
     )" via JDBC Statement
 -Requirement: Need to save customer and product along with the order : Cascade
 Need to save customer and product first and order from the already created customer and product : no Cascade
+-Login table points to Customer : no separate table for relationship - one to one
+-To have separate table for one to one : @JoinTable

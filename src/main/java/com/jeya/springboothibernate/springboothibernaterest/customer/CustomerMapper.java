@@ -10,7 +10,7 @@ public class CustomerMapper implements Mapper<CustomerData, Customer>
   public Customer toEntity(CustomerData customerData)
   {
     Customer customer = new Customer();
-    customer.setId(customerData.getId());
+    customer.setCustomerId(customerData.getId());
     customer.setFirstName(customerData.getFirstName());
     customer.setLastName(customerData.getLastName());
     customer.setEmail(customerData.getEmail());
@@ -21,7 +21,7 @@ public class CustomerMapper implements Mapper<CustomerData, Customer>
   public CustomerData toDataObject(Customer customer)
   {
     CustomerData customerData = new CustomerData();
-    customerData.setId(customer.getId());
+    customerData.setId(customer.getCustomerId());
     customerData.setFirstName(customer.getFirstName());
     customerData.setLastName(customer.getLastName());
     customerData.setEmail(customer.getEmail());

@@ -1,31 +1,44 @@
 package com.jeya.springboothibernate.springboothibernaterest.customer;
 
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
+import com.jeya.springboothibernate.springboothibernaterest.login.Login;
+import com.jeya.springboothibernate.springboothibernaterest.order.Order;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Customer
+public class Customer implements Serializable
 {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "customerId")
-  private Long id;
+  private Long customerId;
   private String firstName;
   private String lastName;
   private String email;
 
-  //@OneToMany(fetch = FetchType.LAZY)// by default optional = true
-  //@JoinColumn(name = "orderId")// by default nullable = true
-  //private List<Order> orders;
+  @OneToOne
+  @JoinColumn(name = "id")
+  @PrimaryKeyJoinColumn
+  private Login login;
 
-  /**
+  @OneToMany(fetch = FetchType.LAZY)// by default optional = true
+  @JoinColumn(name = "orderId")// by default nullable = true
+  private List<Order> orders; // it's not mandatory to have this just because ManyToOne for order is there
+
   public List<Order> getOrders()
   {
     return orders;
@@ -34,20 +47,30 @@ public class Customer
   public void setOrders(List<Order> orders)
   {
     this.orders = orders;
-  }*/
+  }
 
   public Customer()
   {
   }
 
-  public Long getId()
+  public Long getCustomerId()
   {
-    return id;
+    return customerId;
   }
 
-  public void setId(Long id)
+  public void setCustomerId(Long customerId)
   {
-    this.id = id;
+    this.customerId = customerId;
+  }
+
+  public Login getLogin()
+  {
+    return login;
+  }
+
+  public void setLogin(Login login)
+  {
+    this.login = login;
   }
 
   public String getFirstName()
@@ -79,4 +102,5 @@ public class Customer
   {
     this.email = email;
   }
+
 }

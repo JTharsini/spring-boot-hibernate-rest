@@ -1,7 +1,6 @@
 package com.jeya.springboothibernate.springboothibernaterest.order;
 
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -27,7 +26,8 @@ public class Order
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "orderId")
   private Long id;
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  @ManyToOne(fetch = FetchType.LAZY)//cascade = CascadeType.PERSIST
+  //customer should be there. it will not create new
   @JoinColumn(name = "customerId")
   private Customer customer;
   @ManyToMany
