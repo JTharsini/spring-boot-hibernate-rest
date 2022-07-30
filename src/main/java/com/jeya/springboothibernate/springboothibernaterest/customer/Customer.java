@@ -21,6 +21,21 @@ public class Customer
   private String lastName;
   private String email;
 
+  //@OneToMany(fetch = FetchType.LAZY)// by default optional = true
+  //@JoinColumn(name = "orderId")// by default nullable = true
+  //private List<Order> orders;
+
+  /**
+  public List<Order> getOrders()
+  {
+    return orders;
+  }
+
+  public void setOrders(List<Order> orders)
+  {
+    this.orders = orders;
+  }*/
+
   public Customer()
   {
   }
