@@ -1,11 +1,13 @@
 package com.jeya.springboothibernate.springboothibernaterest.order;
 
+import java.util.List;
+
 import com.jeya.springboothibernate.springboothibernaterest.customer.CustomerData;
 import com.jeya.springboothibernate.springboothibernaterest.product.ProductData;
 
 public class OrderData
 {
-  private ProductData productData;
+  private List<ProductData> productDatas;
   private CustomerData customerData;
   private Long id;
 
@@ -14,14 +16,14 @@ public class OrderData
     this.id = id;
   }
 
-  public ProductData getProductData()
+  public List<ProductData> getProductDatas()
   {
-    return productData;
+    return productDatas;
   }
 
-  public void setProductData(ProductData productData)
+  public void setProductDatas(List<ProductData> productDatas)
   {
-    this.productData = productData;
+    this.productDatas = productDatas;
   }
 
   public CustomerData getCustomerData()

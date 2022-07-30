@@ -45,3 +45,14 @@ logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} - %msg%n
 -set the database table name in Upper case ==>
 spring.jpa.hibernate.naming.physical-strateg property and set the entity name accordingly (see Customer2)
 -If that property is not there, Customer will create table named customer. If property is there, then create table Customer
+-@Table(name = "JJOrder")
+public class Order
+need that annotation in my case. Order is reserved word in mssql
+otherwise error:
+2022-07-30 11:29:49 - GenerationTarget encountered exception accepting command : Error executing DDL "
+    create table Order (
+       id bigint identity not null,
+        customer_id bigint,
+        product_id bigint,
+        primary key (id)
+    )" via JDBC Statement

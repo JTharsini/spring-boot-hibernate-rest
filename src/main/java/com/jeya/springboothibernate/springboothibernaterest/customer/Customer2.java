@@ -12,8 +12,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Entity(name="USER")
-@EntityListeners(AuditingEntityListener.class)
+//@Entity(name="USER")
+//@EntityListeners(AuditingEntityListener.class)
 public class Customer2
 {
   @Id

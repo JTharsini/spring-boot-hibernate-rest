@@ -20,7 +20,7 @@ public class OrderMapper implements Mapper<OrderData, Order>
     Order order = new Order();
     order.setId(orderData.getId());
     order.setCustomer(customerMapper.toEntity(orderData.getCustomerData()));
-    order.setProduct(productMapper.toEntity(orderData.getProductData()));
+    order.setProducts(productMapper.toEntities(orderData.getProductDatas()));
     return order;
   }
 
@@ -30,7 +30,7 @@ public class OrderMapper implements Mapper<OrderData, Order>
     OrderData orderData = new OrderData();
     orderData.setId(order.getId());
     orderData.setCustomerData(customerMapper.toDataObject(order.getCustomer()));
-    orderData.setProductData(productMapper.toDataObject(order.getProduct()));
+    orderData.setProductDatas(productMapper.toDataObjects(order.getProducts()));
     return orderData;
   }
 }

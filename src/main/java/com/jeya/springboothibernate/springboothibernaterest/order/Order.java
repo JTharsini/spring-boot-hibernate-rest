@@ -1,13 +1,15 @@
 package com.jeya.springboothibernate.springboothibernaterest.order;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.jeya.springboothibernate.springboothibernaterest.customer.Customer;
 import com.jeya.springboothibernate.springboothibernaterest.product.Product;
@@ -15,31 +17,32 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "JJOrder")
 public class Order
 {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @OneToOne
-  @JoinColumn(name = "customer_id")
+  @JoinColumn(name = "id")
   private Customer customer;
-  @ManyToOne
-  @JoinColumn(name = "product_id")
-  private Product product;
+  @ManyToMany
+  @JoinColumn(name = "id")
+  private List<Product> products;
 
   public Order()
   {
 
   }
 
-  public Product getProduct()
+  public List<Product> getProducts()
   {
-    return product;
+    return products;
   }
 
-  public void setProduct(Product product)
+  public void setProducts(List<Product> products)
   {
-    this.product = product;
+    this.products = products;
   }
 
   public Customer getCustomer()
