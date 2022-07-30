@@ -10,6 +10,7 @@ public class CustomerMapper implements Mapper<CustomerData, Customer>
   public Customer toEntity(CustomerData customerData)
   {
     Customer customer = new Customer();
+    customer.setId(customerData.getId());
     customer.setFirstName(customerData.getFirstName());
     customer.setLastName(customerData.getLastName());
     customer.setEmail(customerData.getEmail());

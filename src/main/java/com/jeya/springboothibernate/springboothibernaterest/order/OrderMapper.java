@@ -18,6 +18,7 @@ public class OrderMapper implements Mapper<OrderData, Order>
   public Order toEntity(OrderData orderData)
   {
     Order order = new Order();
+    order.setId(orderData.getId());
     order.setCustomer(customerMapper.toEntity(orderData.getCustomerData()));
     order.setProduct(productMapper.toEntity(orderData.getProductData()));
     return order;

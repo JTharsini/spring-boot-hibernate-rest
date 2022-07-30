@@ -30,4 +30,9 @@ public class ProductData
   {
     return price;
   }
+
+  public Long getId()
+  {
+    return id;
+  }
 }

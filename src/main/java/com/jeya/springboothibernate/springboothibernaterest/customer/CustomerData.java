@@ -41,4 +41,9 @@ public class CustomerData
   {
     return email;
   }
+
+  public Long getId()
+  {
+    return id;
+  }
 }
